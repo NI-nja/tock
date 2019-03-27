@@ -20,13 +20,13 @@ object AlcmeonBusinessChatClient : CSPBusinessChatClient {
 
     private val logger = KotlinLogging.logger { }
     private val ALCMEON_URL: String =
-        property("alcmeon_businesschat_url", "https://bzc-proxy.alcmeon.com/bzc-proxy/api/1.0/companies/")
+        property("alcmeon_businesschat_url", "https://api.alcmeon.com/")
     private val companyId = property("company_id", "company_id")
     private val password = property("alcmeon_password", "secret")
     private val businessChatClientApi: BusinessChatClientApi
     interface BusinessChatClientApi {
 
-        @POST("/message")
+        @POST("/bzc/businesschat")
         fun sendMessage(
             @RetrofitHeader("id") id: String,
             @RetrofitHeader("Source-Id") sourceId: String,

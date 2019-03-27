@@ -26,6 +26,6 @@ fun BotBus.BusinessChatText(
     Message(
         sourceId = botId.id,
         destinationId = userId.id,
-        type = MessageType.TEXT,
-        body = text
+        type = MessageType.text,
+        body = translate(text).toString()
     )

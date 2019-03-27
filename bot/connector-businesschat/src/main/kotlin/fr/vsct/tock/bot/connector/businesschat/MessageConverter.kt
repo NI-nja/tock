@@ -11,21 +11,25 @@ import fr.vsct.tock.bot.engine.user.PlayerType
 
 object MessageConverter {
 
-    fun toMessage(action: Action): Message? =
-        if (action is SendSentence) {
-            Message(
+    fun toMessage(action: Action): Message? {
+        return if (action is SendSentence) {
+            if (action.text == null) {
+                action.messages.first() as? Message
+            }
+            else Message(
                 sourceId = action.playerId.id,
                 destinationId = action.recipientId.id,
-                type = MessageType.TEXT,
+                type = MessageType.text,
                 body = action.text.toString()
             )
         } else null
+    }
 
     fun toHeader(message: Message): Header = Header(message.id, message.sourceId, message.destinationId)
 
     fun toEvent(message: Message, connectorId: String): Event? =
         when (message.type) {
-            MessageType.TEXT -> {
+            MessageType.text -> {
                 SendSentence(
                     applicationId = connectorId,
                     playerId = PlayerId(message.sourceId, PlayerType.user),

@@ -31,7 +31,7 @@ class BusinessChatConnector(val path: String, val connectorId: String, val busin
 
     override fun register(controller: ConnectorController) {
         controller.registerServices(path) { router ->
-            router.post("/message").handler { context ->
+            router.post(path).handler { context ->
                 val requestTimerData = BotRepository.requestTimer.start("business chat start")
                 try {
                     val body = context.bodyAsString

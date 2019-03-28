@@ -26,7 +26,7 @@ object AlcmeonBusinessChatClient : CSPBusinessChatClient {
     private val businessChatClientApi: BusinessChatClientApi
     interface BusinessChatClientApi {
 
-        @POST("/bzc/businesschat")
+        @POST("/bzc/message")
         fun sendMessage(
             @RetrofitHeader("id") id: String,
             @RetrofitHeader("Source-Id") sourceId: String,
